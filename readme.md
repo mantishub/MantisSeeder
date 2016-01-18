@@ -6,6 +6,10 @@ plugin provides a 'Seed' option under the Manage menu which provides
 administrator with the ability to create 100 test issues under a couple of 
 test project.  The data is based on real data from the Mantis Bug Tracker.
 
+## Sample Seed Data
+
+![Sample Seed Data](wiki/sample_seed_data.png "Sample Seed Data")
+
 ## Supported Versions
 
 - MantisBT 1.2.x - not tested
