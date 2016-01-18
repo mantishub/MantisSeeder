@@ -1,0 +1,5 @@
+<?php
+$s_plugin_MantisSeeder_title = 'Mantis Seeder';
+$s_plugin_MantisSeeder_description = 'Seeds MantisBT with data for testing or demos.';
+
+$s_plugin_MantisSeeder_seed = 'Seed';
