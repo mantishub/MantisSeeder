@@ -10,6 +10,11 @@ test project.  The data is based on real data from the Mantis Bug Tracker.
 
 ![Sample Seed Data](wiki/sample_seed_data.png "Sample Seed Data")
 
+## Credits
+
+- This plugin uses [Mantis PHP client library](https://github.com/mantishub/mantis-php-client)
+  to pull data from [MantisBT's official bug tracker](https://www.mantisbt.org/bugs/).
+
 ## Supported Versions
 
 - MantisBT 1.2.x - not tested
