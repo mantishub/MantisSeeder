@@ -8,27 +8,36 @@
 
 require_once( dirname( __FILE__ ) . '/MantisPhpClient.php' );
 
+define( 'MANTIS_SEEDER_ISSUES_COUNT', 100 );
+
 /**
  * Seeder
  */
 class Seeder
 {
     /**
-     * Seed the database
+     * Seed the database with test projects.
+     *
+     * return array Array of created project ids.
+     */
+    function createProjects() {
+        $t_project_ids = array();
+        $t_project_ids[] = $this->ensure_project_exists( 'MantisBT', 'Mantis Bug Tracker' );
+        $t_project_ids[] = $this->ensure_project_exists( 'MantisHub', 'MantisBT as a Service' );
+        return $t_project_ids;
+    }
+
+    /**
+     * Seed the database with test issues.
      * 
+     * @param integer $p_project_ids  The projects to use for test issues.
      * @param integer $p_issues_count The number of issues to seed.
      */
-    function seed( $p_issues_count ) {
+    function createIssues( $p_project_ids, $p_issues_count = MANTIS_SEEDER_ISSUES_COUNT ) {
         $t_client = new MantisPhpClient( 'https://www.mantisbt.org/bugs/', '', '' );
 
         $t_issues_count = 0;
         $t_ids_tested = array();
-
-        auth_attempt_script_login( 'administrator' );
-
-        $t_project_ids = array();
-        $t_project_ids[] = $this->ensure_project_exists( 'MantisBT', 'Mantis Bug Tracker' );
-        $t_project_ids[] = $this->ensure_project_exists( 'MantisHub', 'MantisBT as a Service' );
 
         while (true) {
             $t_issue_id = rand( 19000, 20500 );
@@ -55,7 +64,7 @@ class Seeder
             }
 
             $t_bug_data = new BugData;
-            $t_bug_data->project_id             = $t_project_ids[rand(0, 1)];
+            $t_bug_data->project_id             = $p_project_ids[rand(0, 1)];
             $t_bug_data->reporter_id            = user_get_id_by_name( $t_issue->reporter->name );
             $t_bug_data->handler_id             = $t_handler_id;
             $t_bug_data->view_state             = $t_issue->view_state->id;

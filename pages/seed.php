@@ -6,19 +6,26 @@
  MIT License
  **************************************************************************/
 
-auth_ensure_user_authenticated();
 access_ensure_global_level( ADMINISTRATOR );
-
-# helper_begin_long_process();
 
 require_once( dirname( dirname( __FILE__ ) ) . '/core/Seeder.php' );
 
 html_page_top1();
-html_meta_redirect( 'view_all_bug_page.php', 0 );
+html_meta_redirect( plugin_page( 'config_page') );
 html_page_top2();
+
+$f_create_issues = gpc_isset( 'create_issues' );
 
 $g_enable_email_notification = OFF;
 $t_seeder = new Seeder();
-$t_seeder->seed(100);
+
+if( $f_create_issues !== OFF ) {
+    $t_project_ids = $t_seeder->createProjects();
+    $t_seeder->createIssues( $t_project_ids );
+}
+
+echo '<div class="success-msg">';
+echo lang_get( 'operation_successful' );
+echo '</div>';
 
 html_page_bottom();

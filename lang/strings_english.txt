@@ -1,5 +1,15 @@
 <?php
+/**************************************************************************
+ MantisBT / MantisHub Seeder Plugin
+ Copyright (c) MantisHub - Victor Boctor
+ All rights reserved.
+ MIT License
+ **************************************************************************/
+
 $s_plugin_MantisSeeder_title = 'Mantis Seeder';
 $s_plugin_MantisSeeder_description = 'Seeds MantisBT with data for testing or demos.';
 
-$s_plugin_MantisSeeder_seed = 'Seed';
+$s_plugin_MantisSeeder_create_issues = 'Create issues';
+$s_plugin_MantisSeeder_create_issues_desc = 'Create %d issues.  This will take a minute.';
+
+
